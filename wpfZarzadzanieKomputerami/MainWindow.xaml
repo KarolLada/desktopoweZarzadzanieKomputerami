@@ -1,4 +1,4 @@
-<Window x:Class="LabManager.MainWindow"
+<Window x:Class="wpfZarzadzanieKomputer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="CyberCafe Management System"
@@ -89,17 +89,15 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- LISTA -->
                     <DataGrid Grid.Column="0" Name="ComputersGrid">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*"/>
-                            <DataGridTextColumn Header="IP (dynamiczne)" Binding="{Binding IP}" Width="*"/>
+                            <DataGridTextColumn Header="IP" Binding="{Binding IP}" Width="*"/>
                             <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
                             <DataGridTextColumn Header="Grupa" Binding="{Binding Group}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <!-- PANEL AKCJI -->
                     <StackPanel Grid.Column="1" Margin="10">
 
                         <TextBlock Text="Akcje komputera" Style="{StaticResource TitleText}"/>
@@ -111,22 +109,14 @@
                         <Button Content="Wyłącz"/>
                         <Button Content="Zablokuj"/>
 
-                        <Separator Margin="0,10"/>
-
-                        <TextBlock Text="Grupy komputerów"/>
-                        <ComboBox>
-                            <ComboBoxItem Content="Gaming"/>
-                            <ComboBoxItem Content="IRC"/>
-                            <ComboBoxItem Content="Grafika"/>
-                        </ComboBox>
-
                     </StackPanel>
 
                 </Grid>
             </TabItem>
 
-            <!-- USERS & ACCOUNTS -->
+            <!-- USERS -->
             <TabItem Header="Użytkownicy">
+
                 <Grid Margin="10">
 
                     <Grid.ColumnDefinitions>
@@ -134,41 +124,51 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Column="0" Name="UsersGrid">
+                    <!-- LISTA -->
+                    <DataGrid Grid.Column="0"
+                              x:Name="UsersGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Login" Binding="{Binding Login}" Width="*"/>
                             <DataGridTextColumn Header="Typ konta" Binding="{Binding AccountType}" Width="*"/>
                             <DataGridTextColumn Header="Saldo" Binding="{Binding Balance}" Width="*"/>
                         </DataGrid.Columns>
+
                     </DataGrid>
 
+                    <!-- FORMULARZ -->
                     <StackPanel Grid.Column="1" Margin="10">
 
-                        <TextBlock Text="Konto użytkownika" Style="{StaticResource TitleText}"/>
+                        <TextBlock Text="Dodaj użytkownika" Style="{StaticResource TitleText}"/>
 
-                        <TextBlock Text="Typ konta:"/>
-                        <ComboBox>
+                        <TextBlock Text="Login"/>
+                        <TextBox x:Name="LoginBox"/>
+
+                        <TextBlock Text="Hasło"/>
+                        <PasswordBox x:Name="PasswordBox"/>
+
+                        <TextBlock Text="Typ konta"/>
+                        <ComboBox x:Name="AccountTypeBox">
                             <ComboBoxItem Content="Czasowe"/>
                             <ComboBoxItem Content="Gotówkowe"/>
                             <ComboBoxItem Content="Debetowe"/>
                             <ComboBoxItem Content="Administracyjne"/>
                         </ComboBox>
 
-                        <TextBlock Text="Login"/>
-                        <TextBox/>
+                        <TextBlock Text="Saldo"/>
+                        <TextBox x:Name="BalanceBox"/>
 
-                        <TextBlock Text="Hasło"/>
-                        <PasswordBox/>
- 
-                        <Button Content="Dodaj użytkownika"/>
-                        <Button Content="Zapisz zmiany"/>
+                        <Button Content="Dodaj użytkownika"
+                                Click="AddUser_Click"/>
 
                     </StackPanel>
 
                 </Grid>
+
             </TabItem>
 
-            
         </TabControl>
 
     </Grid>
