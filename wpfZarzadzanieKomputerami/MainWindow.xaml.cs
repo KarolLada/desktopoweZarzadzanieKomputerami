@@ -44,6 +44,28 @@ namespace wpfZarzadzanieKomputer
             ClearForm();
         }
 
+        // 🆕 USUWANIE UŻYTKOWNIKA
+        private void DeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersGrid.SelectedItem is User selectedUser)
+            {
+                var result = MessageBox.Show(
+                    $"Czy na pewno chcesz usunąć użytkownika: {selectedUser.Login}?",
+                    "Potwierdzenie",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Users.Remove(selectedUser);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Zaznacz użytkownika do usunięcia!");
+            }
+        }
+
         private void ClearForm()
         {
             LoginBox.Text = "";
@@ -63,11 +85,6 @@ namespace wpfZarzadzanieKomputer
                 var computer = window.SelectedComputer;
 
                 MessageBox.Show($"Uruchomiono sesję:\nUżytkownik: {user.Login}\nKomputer: {computer}");
-
-                // tutaj później możesz:
-                // - zmienić status komputera
-                // - zapisać sesję
-                // - odliczać czas itd.
             }
         }
     }

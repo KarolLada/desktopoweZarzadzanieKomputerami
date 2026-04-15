@@ -140,7 +140,8 @@
 
                     <!-- FORMULARZ -->
                     <StackPanel Grid.Column="1" Margin="10">
-
+                        <Button Content="Usuń użytkownika"
+        Click="DeleteUser_Click"/>
                         <TextBlock Text="Dodaj użytkownika" Style="{StaticResource TitleText}"/>
 
                         <TextBlock Text="Login"/>
