@@ -10,6 +10,7 @@ namespace wpfZarzadzanieKomputer
 
         private TabItem adminTab;
         private bool isLoggedIn = false;
+        private User? currentUser;
 
         public MainWindow()
         {
@@ -28,17 +29,27 @@ namespace wpfZarzadzanieKomputer
         {
             if (isLoggedIn) return;
 
-            LoginWindow login = new LoginWindow
+            LoginWindow login = new LoginWindow(Users)
             {
                 Owner = this
             };
 
             login.ShowDialog();
 
-            if (login.IsAuthenticated)
+            if (login.IsAuthenticated && login.LoggedUser != null)
             {
-                isLoggedIn = true;
-                AddAdminTab();
+                currentUser = login.LoggedUser;
+
+                // tylko admin (konto systemowe LUB user admin)
+                if (currentUser.AccountType == "Administracyjne")
+                {
+                    isLoggedIn = true;
+                    AddAdminTab();
+                }
+                else
+                {
+                    MessageBox.Show("Brak uprawnień administratora");
+                }
             }
         }
 
@@ -107,7 +118,7 @@ namespace wpfZarzadzanieKomputer
             ClearForm();
         }
 
-        // 🆕 USUWANIE UŻYTKOWNIKA
+        // USUWANIE UŻYTKOWNIKA
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
             if (UsersGrid.SelectedItem is User selectedUser)
