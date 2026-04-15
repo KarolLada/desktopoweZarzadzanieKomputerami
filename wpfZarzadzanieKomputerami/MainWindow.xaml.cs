@@ -18,7 +18,7 @@ namespace wpfZarzadzanieKomputerami
     {
         public MainWindow()
         {
-            InitializeComponent();
+            
         }
     }
 }

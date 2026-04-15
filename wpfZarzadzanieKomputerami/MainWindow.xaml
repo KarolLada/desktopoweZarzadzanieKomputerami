@@ -159,7 +159,7 @@
 
                         <TextBlock Text="Hasło"/>
                         <PasswordBox/>
-
+ 
                         <Button Content="Dodaj użytkownika"/>
                         <Button Content="Zapisz zmiany"/>
 
