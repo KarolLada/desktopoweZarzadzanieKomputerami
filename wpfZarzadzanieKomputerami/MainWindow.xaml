@@ -102,7 +102,7 @@
 
                         <TextBlock Text="Akcje komputera" Style="{StaticResource TitleText}"/>
 
-                        <Button Content="Uruchom sesję"/>
+                        <Button Content="Uruchom sesję" Click="StartSession_Click"/>
                         <Button Content="Zakończ sesję"/>
                         <Button Content="Zdalny pulpit"/>
                         <Button Content="Restart"/>

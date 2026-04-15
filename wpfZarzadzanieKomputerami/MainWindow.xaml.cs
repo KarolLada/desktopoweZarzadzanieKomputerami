@@ -51,6 +51,25 @@ namespace wpfZarzadzanieKomputer
             AccountTypeBox.SelectedIndex = -1;
             BalanceBox.Text = "";
         }
+
+        private void StartSession_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new StartSessionWindow(Users);
+            window.Owner = this;
+
+            if (window.ShowDialog() == true)
+            {
+                var user = window.SelectedUser;
+                var computer = window.SelectedComputer;
+
+                MessageBox.Show($"Uruchomiono sesję:\nUżytkownik: {user.Login}\nKomputer: {computer}");
+
+                // tutaj później możesz:
+                // - zmienić status komputera
+                // - zapisać sesję
+                // - odliczać czas itd.
+            }
+        }
     }
 
     // MODEL

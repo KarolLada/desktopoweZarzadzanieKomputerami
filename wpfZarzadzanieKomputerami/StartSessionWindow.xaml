@@ -1,0 +1,28 @@
+﻿<Window x:Class="wpfZarzadzanieKomputer.StartSessionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Uruchom sesję"
+        Height="250" Width="350"
+        WindowStartupLocation="CenterOwner">
+
+    <StackPanel Margin="15">
+
+        <TextBlock Text="Wybierz użytkownika"/>
+        <ComboBox x:Name="UserComboBox"
+                  DisplayMemberPath="Login"/>
+
+        <TextBlock Text="Wybierz komputer" Margin="0,10,0,0"/>
+        <ComboBox x:Name="ComputerComboBox">
+            <ComboBoxItem Content="PC 1"/>
+            <ComboBoxItem Content="PC 2"/>
+            <ComboBoxItem Content="PC 3"/>
+            <ComboBoxItem Content="PC 4"/>
+        </ComboBox>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="OK" Width="80" Margin="5" Click="OK_Click"/>
+            <Button Content="Anuluj" Width="80" Margin="5" Click="Cancel_Click"/>
+        </StackPanel>
+
+    </StackPanel>
+</Window>
