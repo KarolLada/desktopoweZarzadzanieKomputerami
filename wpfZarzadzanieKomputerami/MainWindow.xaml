@@ -43,8 +43,8 @@
                        FontSize="14"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Zaloguj"/>
-                <Button Content="Wyloguj"/>
+                <Button Content="Zaloguj" Click="Zaloguj_Click"/>
+                <Button Content="Wyloguj" Click="Wyloguj_Click"/>
                 <Button Content="Raporty"/>
                 <Button Content="Ustawienia"/>
             </StackPanel>
@@ -52,7 +52,7 @@
         </DockPanel>
 
         <!-- MAIN AREA -->
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1" x:Name="MainTabControl">
 
             <!-- DASHBOARD -->
             <TabItem Header="Dashboard">

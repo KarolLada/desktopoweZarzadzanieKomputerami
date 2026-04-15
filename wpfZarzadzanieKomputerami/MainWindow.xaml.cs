@@ -8,12 +8,75 @@ namespace wpfZarzadzanieKomputer
     {
         private ObservableCollection<User> Users;
 
+        private TabItem adminTab;
+        private bool isLoggedIn = false;
+
         public MainWindow()
         {
             InitializeComponent();
 
             Users = new ObservableCollection<User>();
             UsersGrid.ItemsSource = Users;
+        }
+
+
+        // =========================
+        // LOGOWANIE
+        // =========================
+
+        private void Zaloguj_Click(object sender, RoutedEventArgs e)
+        {
+            if (isLoggedIn) return;
+
+            LoginWindow login = new LoginWindow
+            {
+                Owner = this
+            };
+
+            login.ShowDialog();
+
+            if (login.IsAuthenticated)
+            {
+                isLoggedIn = true;
+                AddAdminTab();
+            }
+        }
+
+        private void Wyloguj_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isLoggedIn) return;
+
+            isLoggedIn = false;
+            RemoveAdminTab();
+        }
+
+        private void AddAdminTab()
+        {
+            if (adminTab == null)
+            {
+                adminTab = new TabItem
+                {
+                    Header = "Panel administratorski",
+                    Content = new TextBlock
+                    {
+                        Text = "Panel administratora (pusty)",
+                        Margin = new Thickness(10)
+                    }
+                };
+            }
+
+            if (!MainTabControl.Items.Contains(adminTab))
+            {
+                MainTabControl.Items.Add(adminTab);
+            }
+        }
+
+        private void RemoveAdminTab()
+        {
+            if (adminTab != null && MainTabControl.Items.Contains(adminTab))
+            {
+                MainTabControl.Items.Remove(adminTab);
+            }
         }
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
